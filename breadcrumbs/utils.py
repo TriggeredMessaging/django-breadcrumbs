@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from .breadcrumbs import Breadcrumbs,BreadcrumbsNotSet
-from django.contrib.flatpages.models import FlatPage
 from django.http import Http404
 
 def breadcrumbs_for_flatpages(request,flatpage):
+
+    from django.contrib.flatpages.models import FlatPage
+
     """ given request and flatpage instance create breadcrumbs for all flat
     pages """
     if not hasattr(request,'breadcrumbs') or \

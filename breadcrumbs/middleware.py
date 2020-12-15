@@ -2,8 +2,6 @@
 from .breadcrumbs import Breadcrumbs
 from .utils import breadcrumbs_for_flatpages
 from django.conf import settings
-from django.contrib.flatpages.models import FlatPage
-from django.contrib.flatpages.views import flatpage
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 
@@ -16,6 +14,10 @@ class BreadcrumbsMiddleware(object):
 
 class FlatpageFallbackMiddleware(object):
     def process_response(self, request, response):
+
+        from django.contrib.flatpages.models import FlatPage
+        from django.contrib.flatpages.views import flatpage
+
         if response.status_code != 404:
             return response # No need to check for a flatpage for non-404 responses.
         try:
